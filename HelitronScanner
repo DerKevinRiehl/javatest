@@ -18,7 +18,8 @@ from os import path
 
 pkg_name = "HelitronScanner"
 jar_file = "HelitronScanner.jar"
-
+head_file = "head.lcvs"
+tail_file = "tail.lcvs"
 
 default_jvm_mem_opts = ['-Xms512m', '-Xmx1g']
 
@@ -117,10 +118,14 @@ def main():
     
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in    
     #jar_path = os.path.join(jar_dir, jar_file)
-    jar_path = os.path.join(script_dir, '..', 'share', pkg_name, jar_file)
+    jar_path = os.path.join(script_dir, '..', 'share', pkg_name, jar_file)    
+    hea_path = os.path.join(script_dir, '..', 'share', pkg_name, head_file)
+    tai_path = os.path.join(script_dir, '..', 'share', pkg_name, tail_file)
+
 
     java_args = [java] + mem_opts + prop_opts + [jar_arg] + [jar_path] + pass_args
-    print("head exists...",path.exists(os.path.join(script_dir, "head.lcvs")))
+    print("head exists...",path.exists(hea_path))
+    print("tail exists...",path.exists(tai_path))
 
     sys.exit(subprocess.call(java_args))
 
